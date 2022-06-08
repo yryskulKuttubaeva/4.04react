@@ -26,9 +26,11 @@ function Input() {
           type="text"
           value={item}
           onChange={(item) => setItem(item.target.value)}
+          
         />
+        <button onClick={Add}>Add</button>
       </form>
-      <button onClick={Add}>+</button>
+      
       <ul>
      
         {items.map((it, index) => {
