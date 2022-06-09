@@ -1,50 +1,17 @@
-import { useState } from "react";
+import React from 'react'
 
-function Input() {
-  const [items, setItems] = useState([]);
-  const [item, setItem] = useState("");
-
-  function Add(event) {
-    event.preventDefault();
-    setItems([
-      ...items,
-      {
-        name: item,
-      },
-    ]);
-    setItem("");
-  }
- 
-  const deleteItem = (index) => () =>
-    setItems((items) => items.filter((_, i) => i !== index));
-  return (
-    <>
+export const Todolist = ({books,deleteBook}) => {
     
-      <form onSubmit={Add}>
-        <input
-          name="item"
-          type="text"
-          value={item}
-          onChange={(item) => setItem(item.target.value)}
-          
-        />
-        <button onClick={Add}>Add</button>
-      </form>
-      
-      <ul>
-     
-        {items.map((it, index) => {
-        return (
-          <div key={it.id}>
-            {it.name} <button onClick={deleteItem(index)}>---</button>
-          </div>
-        );
-      })}
+    return books.map(book=>(
         
- 
-      </ul>
-    </>
-  );
+        <tr key={book.isbn}>
+            <td>{book.title}</td>
+            <td>{book.author}</td>
+            <td>{book.isbn}</td>
+            <td className='delete-btn' onClick={()=>deleteBook(book.isbn)}>
+               <button>----</button>
+            </td>           
+        </tr>            
+    
+))
 }
-
-export default Input;
